@@ -8,7 +8,7 @@ class Tag < ActiveRecord::Base
   has_many :taggings
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :scope => :kind
 
   named_scope :with_name_like, lambda { |name| { :conditions => ["name like ?", name] } }
   named_scope :of_kind,        lambda { |kind| { :conditions => {:kind => kind} } }

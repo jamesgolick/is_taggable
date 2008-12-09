@@ -9,6 +9,10 @@ Expectations do
     Tag.create!(:name => "duplicate")
   end
 
+  expect Tag.new(:name => "not dup").to.be.valid? do
+    Tag.create!(:name => "not dup", :kind => "something")
+  end
+
   expect Tag.new.not.to.be.valid?
   expect String do
     t = Tag.new
