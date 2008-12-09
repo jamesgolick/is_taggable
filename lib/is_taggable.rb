@@ -1,0 +1,2 @@
+module IsTaggable
+end
