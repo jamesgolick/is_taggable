@@ -8,4 +8,11 @@ Expectations do
   expect Tag.new(:name => "duplicate").not.to.be.valid? do
     Tag.create!(:name => "duplicate")
   end
+
+  expect Tag.new.not.to.be.valid?
+  expect String do
+    t = Tag.new
+    t.valid?
+    t.errors[:name]
+  end
 end
