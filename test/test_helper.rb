@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table :tags do |t|
     t.string :name, :default => ''
+    t.string :kind, :default => '' 
   end
 
   create_table :taggings do |t|

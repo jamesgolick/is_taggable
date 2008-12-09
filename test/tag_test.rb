@@ -19,4 +19,8 @@ Expectations do
   expect Tag.create!(:name => "iamawesome") do
     Tag.find_or_initialize_with_name_like("iaMawesome")
   end
+
+  expect Tag.create!(:kind => "language", :name => "French") do
+    Tag.of_kind("language").first
+  end
 end

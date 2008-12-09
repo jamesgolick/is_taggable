@@ -11,4 +11,5 @@ class Tag < ActiveRecord::Base
   validates_uniqueness_of :name
 
   named_scope :with_name_like, lambda { |name| { :conditions => ["name like ?", name] } }
+  named_scope :of_kind,        lambda { |kind| { :conditions => {:kind => kind} } }
 end
