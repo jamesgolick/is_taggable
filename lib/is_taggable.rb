@@ -4,6 +4,12 @@ require 'tag'
 require 'tagging'
 
 module IsTaggable
+  class TagList < Array
+    def to_s
+      join(', ')
+    end
+  end
+
   module ActiveRecordExtension
     def is_taggable(*kinds)
       class_inheritable_accessor :tag_kinds
@@ -32,7 +38,8 @@ module IsTaggable
 
     module InstanceMethods
       def set_tag_list(kind, list)
-        instance_variable_set(tag_list_name_for_kind(kind), list.is_a?(Array) ? list : list.split(', '))
+        tag_list = TagList.new(list.is_a?(Array) ? list : list.split(', '))
+        instance_variable_set(tag_list_name_for_kind(kind), tag_list)
       end
 
       def get_tag_list(kind)

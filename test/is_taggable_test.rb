@@ -37,6 +37,11 @@ Expectations do
     p.language_list
   end
 
+  expect "english, french" do
+    p = Post.new :language_list => "english, french"
+    p.language_list.to_s
+  end
+
   expect 2 do
     p = Post.new :language_list => "english, french"
     p.save!
