@@ -28,5 +28,6 @@ ActiveRecord::Schema.define(:version => 0) do
 end
 
 class Post < ActiveRecord::Base
+  is_taggable
 end
 
