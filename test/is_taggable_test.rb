@@ -23,4 +23,23 @@ Expectations do
     p.instance_variable_set("@tag_list", nil)
     p.tag_list
   end
+
+  expect ["english", "french"] do
+    p = Post.new :language_list => "english, french"
+    p.save!
+    p.tags.reload
+    p.instance_variable_set("@language_list", nil)
+    p.language_list
+  end
+
+  expect ["english", "french"] do
+    p = Post.new :language_list => "english, french"
+    p.language_list
+  end
+
+  expect 2 do
+    p = Post.new :language_list => "english, french"
+    p.save!
+    p.tags.length
+  end
 end

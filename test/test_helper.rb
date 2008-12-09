@@ -29,6 +29,6 @@ ActiveRecord::Schema.define(:version => 0) do
 end
 
 class Post < ActiveRecord::Base
-  is_taggable
+  is_taggable :tags, :languages
 end
 
