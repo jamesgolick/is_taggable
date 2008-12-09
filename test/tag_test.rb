@@ -15,4 +15,8 @@ Expectations do
     t.valid?
     t.errors[:name]
   end
+
+  expect Tag.create!(:name => "iamawesome") do
+    Tag.find_or_initialize_with_name_like("iaMawesome")
+  end
 end
