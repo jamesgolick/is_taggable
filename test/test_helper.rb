@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'activerecord'
 require File.dirname(__FILE__)+'/../lib/is_taggable'
 require 'expectations'
 require 'logger'
