@@ -20,8 +20,13 @@ Expectations do
     t.errors[:name]
   end
 
-  expect Tag.create!(:name => "iamawesome") do
-    Tag.find_or_initialize_with_name_like("iaMawesome")
+  expect Tag.create!(:name => "iamawesome", :kind => "awesomestuff") do
+    Tag.find_or_initialize_with_name_like_and_kind("iaMawesome", "awesomestuff")
+  end
+
+  expect true do
+    Tag.create!(:name => "iamawesome", :kind => "stuff")
+    Tag.find_or_initialize_with_name_like_and_kind("iaMawesome", "otherstuff").new_record?
   end
 
   expect Tag.create!(:kind => "language", :name => "French") do
