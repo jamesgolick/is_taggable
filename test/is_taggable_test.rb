@@ -17,7 +17,7 @@ Expectations do
   expect ["one", "two"] do
     IsTaggable::TagList.delimiter = " "
     n = Comment.new :tag_list => "one two"
-    IsTaggable::TagList.delimiter = ", " # puts things back to avoid breaking following tests
+    IsTaggable::TagList.delimiter = "," # puts things back to avoid breaking following tests
     n.tag_list
   end
 
@@ -52,6 +52,15 @@ Expectations do
   expect "english, french" do
     p = Post.new :language_list => "english, french"
     p.language_list.to_s
+  end
+  
+  # added - should clean up strings with arbitrary spaces around commas
+  expect ["spaces","should","not","matter"] do
+    p = Post.new
+    p.tag_list = "spaces,should,  not,matter"
+    p.save!
+    p.tags.reload
+    p.tag_list
   end
 
   expect 2 do

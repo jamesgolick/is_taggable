@@ -6,10 +6,10 @@ require 'tagging'
 module IsTaggable
   class TagList < Array
     cattr_accessor :delimiter
-    @@delimiter = ', '
+    @@delimiter = ','
     
     def initialize(list)
-      list = list.is_a?(Array) ? list : list.split(@@delimiter)
+      list = list.is_a?(Array) ? list : list.split(@@delimiter).collect(&:strip)
       super
     end
     
