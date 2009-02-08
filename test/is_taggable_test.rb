@@ -8,6 +8,11 @@ Expectations do
   expect Tagging do
     Post.new.taggings.build
   end
+  
+  expect ["is_taggable", "has 'tags' by default"] do
+    n = Comment.new :tag_list => "is_taggable, has 'tags' by default"
+    n.tag_list
+  end
 
   expect ["something cool", "something else cool"] do
     p = Post.new :tag_list => "something cool, something else cool"

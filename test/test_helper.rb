@@ -11,6 +11,9 @@ ActiveRecord::Base.logger = Logger.new(STDERR)
 ActiveRecord::Base.logger.level = Logger::WARN
 
 ActiveRecord::Schema.define(:version => 0) do
+  create_table :comments do |t|
+  end
+  
   create_table :posts do |t|
     t.string  :title, :default => ''
   end
@@ -32,3 +35,6 @@ class Post < ActiveRecord::Base
   is_taggable :tags, :languages
 end
 
+class Comment < ActiveRecord::Base
+  is_taggable
+end
