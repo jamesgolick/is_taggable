@@ -5,6 +5,14 @@ require 'tagging'
 
 module IsTaggable
   class TagList < Array
+    cattr_accessor :delimiter
+    @@delimiter = ', '
+    
+    def initialize(list)
+      list = list.is_a?(Array) ? list : list.split(@@delimiter)
+      super
+    end
+    
     def to_s
       join(', ')
     end
@@ -38,7 +46,7 @@ module IsTaggable
 
     module InstanceMethods
       def set_tag_list(kind, list)
-        tag_list = TagList.new(list.is_a?(Array) ? list : list.split(', '))
+        tag_list = TagList.new(list)
         instance_variable_set(tag_list_name_for_kind(kind), tag_list)
       end
 
