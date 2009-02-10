@@ -29,7 +29,7 @@ Expectations do
     Tag.find_or_initialize_with_name_like_and_kind("iaMawesome", "otherstuff").new_record?
   end
 
-  expect Tag.create!(:kind => "language", :name => "French") do
+  expect Tag.create!(:kind => "language", :name => "french") do
     Tag.of_kind("language").first
   end
 end
