@@ -1,0 +1,52 @@
+= is_taggable
+
+At last, a short and sweet tagging implementation that you can easily modify and extend.
+
+Most of the plugins out there are on steroids or messing directly with SQL, a known gateway drug.
+
+We wanted a more sober plugin that would handle new functionality without breaking a sweat. Some plugins had minimal or no tests *gasp*. They were so messed up that operating would likely cause internal bleeding.
+
+So, we crafted the plugin we needed with the functionality we were looking for: tag kinds. It's small and healthy. So, it should be a good base to build on.
+
+== Usage
+
+After generating the migration:
+
+  $ script/generate is_taggable_migration
+  $ rake db:migrate
+
+All you need is the 'is_taggable' declaration in your models:
+
+  class User < ActiveRecord::Base
+    is_taggable :tags, :languages
+  end
+
+Calling is_taggable with any arguments defaults to a tag_list. Instantiating our polyglot user is easy:
+
+  User.new :tag_list => "rails, giraffesoft", :language_list => "english, french, spanish, latin, esperanto, tlhIngan Hol"
+
+A comma is the default tag separator, but this can be easily changed:
+
+  IsTaggable::TagList.delimiter = " "
+
+== Get it
+
+  $ sudo gem install is_taggable
+  
+As a rails gem dependency:
+
+  config.gem 'is_taggable'
+
+Or get the source from github:
+
+  $ git clone git://github.com/giraffesoft/is_taggable.git
+
+(or fork it at http://github.com/giraffesoft/is_taggable)
+
+== Credits
+
+is_taggable was created, and is maintained by Daniel Haran and James Golick.
+
+== License
+
+is_taggable is available under the MIT License
