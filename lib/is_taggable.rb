@@ -33,7 +33,7 @@ module IsTaggable
       klass.class_eval do
         include IsTaggable::TaggableMethods::InstanceMethods
 
-        has_many   :taggings, :as      => :taggable
+        has_many   :taggings, :as      => :taggable, :dependent => :destroy
         has_many   :tags,     :through => :taggings
         after_save :save_tags
 
@@ -72,7 +72,7 @@ module IsTaggable
 
           taggings.each(&:save)
         end
-
+        
         def delete_unused_tags(tag_kind)
           tags.of_kind(tag_kind).each { |t| tags.delete(t) unless get_tag_list(tag_kind).include?(t.name) }
         end
