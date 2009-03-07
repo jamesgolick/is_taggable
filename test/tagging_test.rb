@@ -6,6 +6,11 @@ Expectations do
     t.tag
   end
   
+  expect Post do
+    t = Tagging.new :taggable => Post.new
+    t.taggable
+  end
+  
   expect 2 do
     2.times { Post.create(:tag_list => "interesting") }
     Tag.find_by_name("interesting").taggings.count
