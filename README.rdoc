@@ -20,6 +20,10 @@ All you need is the 'is_taggable' declaration in your models:
   class User < ActiveRecord::Base
     is_taggable :tags, :languages
   end
+  
+In your forms, add a text fields for "tag_list" and/or "language_list" (matching the example model above):
+
+  <%= f.text_field :tag_list %>
 
 Calling is_taggable with any arguments defaults to a tag_list. Instantiating our polyglot user is easy:
 
