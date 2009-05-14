@@ -63,6 +63,14 @@ Expectations do
     p.tag_list
   end
 
+  expect ["blank","topics","should be ignored"] do
+    p = Post.new
+    p.tag_list = "blank, topics, should be ignored, "
+    p.save!
+    p.tags.reload
+    p.tag_list
+  end
+
   expect 2 do
     p = Post.new :language_list => "english, french"
     p.save!
