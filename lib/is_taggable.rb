@@ -9,7 +9,7 @@ module IsTaggable
     @@delimiter = ','
     
     def initialize(list)
-      list = list.is_a?(Array) ? list : list.split(@@delimiter).collect(&:strip)
+      list = list.is_a?(Array) ? list : list.split(@@delimiter).collect(&:strip).reject(&:blank?)
       super
     end
     
