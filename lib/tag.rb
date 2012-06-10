@@ -10,6 +10,11 @@ class Tag < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :kind
 
-  named_scope :with_name_like_and_kind, lambda { |name, kind| { :conditions => ["name like ? AND kind = ?", name, kind] } }
-  named_scope :of_kind,                 lambda { |kind| { :conditions => {:kind => kind} } }
+  if Tag.respond_to? :scope
+    scope :with_name_like_and_kind, lambda { |name, kind| { :conditions => ["name like ? AND kind = ?", name, kind] } }
+    scope :of_kind,                 lambda { |kind| { :conditions => {:kind => kind} } }
+  else
+    named_scope :with_name_like_and_kind, lambda { |name, kind| { :conditions => ["name like ? AND kind = ?", name, kind] } }
+    named_scope :of_kind,                 lambda { |kind| { :conditions => {:kind => kind} } }
+  end
 end
